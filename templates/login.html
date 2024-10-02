@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<main class="d-flex justify-content-center align-items-center">
+    <form class="px-4 w-75" method="post" action="{% url 'login' %}">
+        {% if error %}
+            <p class="text-danger">{{ error }}</p>
+        {% endif %}
+        {% csrf_token %}
+        <h1 class="mb-3 fw-normal">Kirish</h1>
+        <label for="username">Username:</label><br>
+        <input class="form-control" type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input class="form-control" type="password" id="password" name="password"><br><br>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Kirish</button>
+    </form>
+</main>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user != None %}
+    {% for lesson in lessons %}
+    <a class="d-block text-dark fs-5" href="{% url 'table' lesson.id %}">{{ lesson.name }}</a>
+    {% if lesson.teacher == user %}
+        Teacher
+    {% else %}
+        Student
+    {% endif %}
+    {% endfor %}
+{% else %}
+    <h1>Tizimga kiring</h1>
+{% endif %}
+{% endblock %}
