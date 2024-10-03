@@ -12,6 +12,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=70)
     phone_number = models.CharField(max_length=13)
+    date = models.DateField(auto_now_add=True)
+    balance = models.IntegerField(default=0)
     role = models.CharField(choices=OPTION_CHOICES, max_length=7)
 
     def __str__(self):
@@ -26,9 +28,10 @@ class Date(models.Model):
 class Lesson(models.Model):
     name = models.CharField(max_length=70)
     date = models.CharField(max_length=40)
+    price = models.IntegerField(default=0)
     teacher = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='teacher')
     students = models.ManyToManyField(Profile, related_name='students')
-    dates = models.ManyToManyField(Date, related_name='dates')
+    dates = models.ManyToManyField(Date, related_name='dates', blank=True)
 
     def __str__(self):
         return self.name
@@ -44,3 +47,20 @@ class Mark(models.Model):
 
     def __str__(self):
         return self.student.full_name
+
+
+class Payment(models.Model):
+    student = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    amount = models.IntegerField()
+
+    def __str__(self):
+        return self.student.full_name
+
+
+class History(models.Model):
+    text = models.TextField()
+    datetime = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.datetime.strftime("%Y-%m-%d %H:%M:%S"))
