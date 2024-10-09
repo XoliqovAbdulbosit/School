@@ -3,13 +3,28 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+{% if admin %}
+{% include 'payment_modal.html' %}
+{% include 'group_modal.html' %}
+{% include 'lesson_modal.html' %}
+{% include 'user_modal.html' %}
+<h3>Users with low balance:</h3>
+{% for id, user in users.items %}
+    <h5 class="my-0">Full Name: {{ user.full_name }}</h5>
+    <p class="my-0">ID: {{ user.id }}</p>
+    <p class="my-0">Phone Number: {{ user.phone_number }}</p>
+    <p class="my-0">Role: {{ user.role }}</p>
+    <p class="my-0 mb-2">Balance: {{ user.balance }}</p>
+{% endfor %}
+{% endif %}
+<h3>Lessons: </h3>
 {% if user != None %}
     {% for lesson in lessons %}
-    <a class="d-block text-dark fs-5" href="{% url 'table' lesson.id %}">{{ lesson.name }}</a>
+    <a class="text-dark fs-5" href="{% url 'table' lesson.id %}">{{ lesson.id }}. {{ lesson.name }}</a>
     {% if lesson.teacher == user %}
-        Teacher
+        <p>Teacher</p>
     {% else %}
-        Student
+        <p>Student</p>
     {% endif %}
     {% endfor %}
 {% else %}
