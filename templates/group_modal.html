@@ -1,0 +1,25 @@
+<a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#groupModal">Group Management</a>
+<div class="modal fade" id="groupModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="groupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="groupModalLabel">Management</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'home' %}" method="post">
+                    {% csrf_token %}
+                    <label for="id">ID:</label>
+                    <input class="form-control mb-2" type="number" name="id" id="id" required>
+                    <label for="id">Lesson ID:</label>
+                    <input class="form-control mb-2" type="number" name="lesson_id" id="lesson_id" required>
+                    <select class="form-select my-2" name="option" aria-label="Option">
+                        <option selected>Add</option>
+                        <option>Remove</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Apply</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

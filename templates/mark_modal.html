@@ -1,0 +1,35 @@
+<a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#markModal">Set Mark</a>
+<div class="modal fade" id="markModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="markModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="markModalLabel">Set Mark</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'table' id %}" method="post">
+                    {% csrf_token %}
+                    <select class="form-select my-2" name="student" aria-label="Select Student">
+                        {% for student in students %}
+                            <option>{{ student }}</option>
+                        {% endfor %}
+                    </select>
+                    <select class="form-select my-2" name="date" aria-label="Select Date">
+                        {% for date in dates %}
+                            <option>{{ date.date }}</option>
+                        {% endfor %}
+                    </select>
+                    <select class="form-select my-2" name="mark" aria-label="Select Mark">
+                        <option selected>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Apply</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

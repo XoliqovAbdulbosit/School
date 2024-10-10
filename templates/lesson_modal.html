@@ -1,0 +1,23 @@
+<a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#lessonModal">Create Group</a>
+<div class="modal fade" id="lessonModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="lessonModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="lessonModalLabel">Lesson</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'home' %}" method="post">
+                    {% csrf_token %}
+                    <label for="name">Name:</label>
+                    <input class="form-control mb-2" type="text" name="name" id="name" required>
+                    <label for="teacher">Teacher ID:</label>
+                    <input class="form-control mb-2" type="text" name="teacher" id="teacher" required>
+                    <label for="price">Price:</label>
+                    <input class="form-control mb-2" type="number" name="price" id="price" required>
+                    <button type="submit" class="btn btn-primary">Apply</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

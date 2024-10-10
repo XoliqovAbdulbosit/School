@@ -1,0 +1,25 @@
+<a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal">Create User</a>
+<div class="modal fade" id="userModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="userModalLabel">User</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'home' %}" method="post">
+                    {% csrf_token %}
+                    <label for="full_name">Full Name:</label>
+                    <input class="form-control mb-2" type="text" name="full_name" id="full_name" required>
+                    <label for="phone_number">Phone Number:</label>
+                    <input class="form-control mb-2" type="number" name="phone_number" id="phone_number" required>
+                    <select class="form-select my-2" name="role" aria-label="Role">
+                        <option selected>Student</option>
+                        <option>Teacher</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Apply</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
